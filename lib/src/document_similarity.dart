@@ -1,10 +1,11 @@
+import 'package:document_analysis/document_analysis.dart';
 import 'package:document_analysis/src/matrix_creator.dart';
 import 'package:document_analysis/src/vector_measurement.dart';
 
 ///Check similarity between 2 documents using word frequency metric
 ///
 ///Default distanceFunction is cosineDistance
-double wordFrequencySimilarity(String document1, String document2,
+double wordFrequencySimilarity(TokenizableDocument document1, TokenizableDocument document2,
     {distanceFunction = cosineDistance,
     String Function(String)? stemmer,
     List<String>? stopwords}) {
@@ -18,7 +19,7 @@ double wordFrequencySimilarity(String document1, String document2,
 ///
 ///Default distanceFunction is cosineDistance
 double tfIdfSimilarity(
-    String document1, String document2, List<String> background,
+    TokenizableDocument document1, TokenizableDocument document2, List<TokenizableDocument> background,
     {distanceFunction = cosineDistance,
     String Function(String)? stemmer,
     List<String>? stopwords}) {
@@ -33,7 +34,7 @@ double tfIdfSimilarity(
 ///
 ///Default distanceFunction is cosineDistance
 double hybridTfIdfSimilarity(
-    String document1, String document2, List<String> background,
+    TokenizableDocument document1, TokenizableDocument document2, List<TokenizableDocument> background,
     {distanceFunction = cosineDistance,
     String Function(String)? stemmer,
     List<String>? stopwords}) {

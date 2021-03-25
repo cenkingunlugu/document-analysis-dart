@@ -29,7 +29,7 @@ List<Map<String, double>> tfIdfProbability(TokenizationOutput tokenOut) {
   //calculate the IDF first, the value is used for all document
   Map<String, double> wordIDF = {};
   tokenOut.wordInDocumentOccurrence.forEach((key, val) {
-    wordIDF[key] = log(documentCount / tokenOut.wordInDocumentOccurrence[key]!) /
+    wordIDF[key] = log(documentCount / tokenOut.wordInDocumentOccurrence[key]!.count) /
         ln10; //log10
   });
 
@@ -63,7 +63,7 @@ Map<String, double> hybridTfIdfProbability(TokenizationOutput tokenOut) {
   //calculate the IDF first, the value is used for all document
   Map<String, double> wordIDF = {};
   tokenOut.wordInDocumentOccurrence.forEach((key, val) {
-    wordIDF[key] = log(documentCount / tokenOut.wordInDocumentOccurrence[key]!) /
+    wordIDF[key] = log(documentCount / tokenOut.wordInDocumentOccurrence[key]!.count) /
         ln10; //log10
   });
 

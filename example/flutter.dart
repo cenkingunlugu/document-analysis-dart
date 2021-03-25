@@ -14,14 +14,14 @@ class _DocSimilarityState extends State<DocSimilarity> {
   String _output = "";
 
   void _checkSimilarity() {
-    String doc1 = _doc1Con.text;
-    String doc2 = _doc2Con.text;
-    List<String> background = [
-      'A government source has told the BBC there will be "no deal tonight", as officials continue to work on the technical details in Brussels and German',
-      'iOS 13 has continued Apple’s impressive installation rate of a new version of the iPhone’s operating system. Launched on September 19th, the mobile OS is now installed on half of all iPhones, and 55 percent of iPhones launched in the last year.',
-      'Chinese phone maker Xiaomi today held an event in New Delhi, India where it revealed the pricing and availability of the Redmi Note 8 and 9',
-      "Samsung's version of Android 10, called One UI 2.0, features more secure facial recognition for unlocking your Galaxy S10 and Note 10.",
-      "NASA's Center for Near-Earth Object Studies (CNEOS) has reported how the larger of the approaching asteroids is almost three times taller and five times heavier"
+    TokenizableDocument doc1 = TokenizableDocument('1', _doc1Con.text);
+    TokenizableDocument doc2 = TokenizableDocument('2', _doc2Con.text);
+    List<TokenizableDocument> background = [
+      TokenizableDocument('3', 'A government source has told the BBC there will be "no deal tonight", as officials continue to work on the technical details in Brussels and German'),
+      TokenizableDocument('4', 'iOS 13 has continued Apple’s impressive installation rate of a new version of the iPhone’s operating system. Launched on September 19th, the mobile OS is now installed on half of all iPhones, and 55 percent of iPhones launched in the last year.'),
+      TokenizableDocument('5', 'Chinese phone maker Xiaomi today held an event in New Delhi, India where it revealed the pricing and availability of the Redmi Note 8 and 9'),
+      TokenizableDocument('6', "Samsung's version of Android 10, called One UI 2.0, features more secure facial recognition for unlocking your Galaxy S10 and Note 10."),
+      TokenizableDocument('7', "NASA's Center for Near-Earth Object Studies (CNEOS) has reported how the larger of the approaching asteroids is almost three times taller and five times heavier")
     ];
 
     double wfSim = wordFrequencySimilarity(doc1, doc2);

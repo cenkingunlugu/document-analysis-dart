@@ -5,7 +5,7 @@ import 'package:document_analysis/src/tokenizer.dart';
 
 ///Create word-vector matrix using word-frequency metric
 ///
-List<List<double>> wordFrequencyMatrix(List<String> documentList,
+List<List<double>> wordFrequencyMatrix(List<TokenizableDocument> documentList,
     {String Function(String)? stemmer, List<String>? stopwords}) {
   TokenizationOutput tokenOut =
       documentTokenizer(documentList, stemmer: stemmer, stopwords: stopwords);
@@ -28,7 +28,7 @@ List<List<double>> wordFrequencyMatrix(List<String> documentList,
 
 ///Create word-vector matrix using TF-IDF metric
 ///
-List<List<double?>> tfIdfMatrix(List<String> documentList,
+List<List<double?>> tfIdfMatrix(List<TokenizableDocument> documentList,
     {measureFunction = cosineDistance,
     String Function(String)? stemmer,
     List<String>? stopwords}) {
@@ -54,7 +54,7 @@ List<List<double?>> tfIdfMatrix(List<String> documentList,
 
 ///Create word-vector matrix using Hybrid TF-IDF metric
 ///
-List<List<double?>> hybridTfIdfMatrix(List<String> documentList,
+List<List<double?>> hybridTfIdfMatrix(List<TokenizableDocument> documentList,
     {measureFunction = cosineDistance,
     String Function(String)? stemmer,
     List<String>? stopwords}) {

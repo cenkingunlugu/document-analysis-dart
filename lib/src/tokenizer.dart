@@ -5,17 +5,18 @@ import 'package:document_analysis/src/structure.dart';
 ///Only processes `[a-z A-Z 0-9]`.
 ///
 ///May use external stemmer if available.
-TokenizationOutput documentTokenizer(List<String> documentList,
+TokenizationOutput documentTokenizer(List<TokenizableDocument> documentList,
     {minLen = 1, String Function(String)? stemmer, List<String>? stopwords}) {
   TokenizationOutput tokenOut = TokenizationOutput();
 
   for (int k = 0; k < documentList.length; k++) {
     Map<String, double> currentBOW = {};
     int currentTotalWord = 0;
-    List<String> words = documentList[k]
+    List<String> words = documentList[k].text
         .toLowerCase()
         .replaceAll(RegExp(r"[^a-z0-9 ]"), "")
         .split(" ");
+    String documentId = documentList[k].id;
     List<String> contentWords = [];
 
     if (words.length >= minLen) {
@@ -43,9 +44,12 @@ TokenizationOutput documentTokenizer(List<String> documentList,
             currentBOW[word] = 1;
             //found in this document for the first time
             if (tokenOut.wordInDocumentOccurrence.containsKey(word)) {
-              tokenOut.wordInDocumentOccurrence[word] = tokenOut.wordInDocumentOccurrence[word]!+1;
+              tokenOut.wordInDocumentOccurrence[word]!.count = tokenOut.wordInDocumentOccurrence[word]!.count+1;
             } else {
-              tokenOut.wordInDocumentOccurrence[word] = 1;
+              tokenOut.wordInDocumentOccurrence[word]!.count = 1;
+            }
+            if (tokenOut.wordInDocumentOccurrence[word]!.documentIds.contains(documentId)) {
+              tokenOut.wordInDocumentOccurrence[word]!.documentIds.add(documentId);
             }
           }
         }
