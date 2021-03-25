@@ -46,10 +46,11 @@ TokenizationOutput documentTokenizer(List<TokenizableDocument> documentList,
             if (tokenOut.wordInDocumentOccurrence.containsKey(word)) {
               tokenOut.wordInDocumentOccurrence[word]!.count = tokenOut.wordInDocumentOccurrence[word]!.count+1;
             } else {
+              tokenOut.wordInDocumentOccurrence[word] = new TokenizedDocuments();
               tokenOut.wordInDocumentOccurrence[word]!.count = 1;
             }
             if (tokenOut.wordInDocumentOccurrence[word]!.documentIds.contains(documentId)) {
-              tokenOut.wordInDocumentOccurrence[word]!.documentIds.add(documentId);
+              tokenOut.wordInDocumentOccurrence[word]?.documentIds.add(documentId);
             }
           }
         }
