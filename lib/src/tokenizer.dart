@@ -14,7 +14,7 @@ TokenizationOutput documentTokenizer(List<TokenizableDocument> documentList,
     int currentTotalWord = 0;
     List<String> words = documentList[k].text
         .toLowerCase()
-        .replaceAll(RegExp(r"[^a-z0-9 ]"), "")
+        .replaceAll(RegExp(r"[^a-z0-9ğüşöçıİĞÜŞÖÇ ]", unicode: true), "")
         .split(" ");
     String documentId = documentList[k].id;
     List<String> contentWords = [];
@@ -49,8 +49,8 @@ TokenizationOutput documentTokenizer(List<TokenizableDocument> documentList,
               tokenOut.wordInDocumentOccurrence[word] = new TokenizedDocuments();
               tokenOut.wordInDocumentOccurrence[word]!.count = 1;
             }
-            if (tokenOut.wordInDocumentOccurrence[word]!.documentIds.contains(documentId)) {
-              tokenOut.wordInDocumentOccurrence[word]?.documentIds.add(documentId);
+            if (!tokenOut.wordInDocumentOccurrence[word]!.documentIds.contains(documentId)) {
+              tokenOut.wordInDocumentOccurrence[word]!.documentIds.add(documentId);
             }
           }
         }
